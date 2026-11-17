@@ -1,0 +1,4 @@
+gpu_panel.log
+gpu_panel_last_closed.json
+__pycache__/
+*.pyc

@@ -1,0 +1,13 @@
+{
+  "_note": "GPU 全清面板配置。kill_ports=按监听端口认领进程(最准)；kill_names=按进程名；kill_patterns=按命令行子串(你的挑图/命名脚本路径加在这里)。恢复=start-stack.bat(n8n+网关+DSH)+嵌入服务+agent-hub ensure+restore_cmds。ComfyUI 清掉后由用户自己启动。",
+  "kill_ports": [8188, 9292, 1235, 1236, 1237, 5678, 3080, 8787, 8790],
+  "kill_names": ["llama-swap.exe", "llama-server.exe"],
+  "kill_patterns": [
+    "ImageAutoRenamer",
+    "agent_ctl.py",
+    "agent-hub"
+  ],
+  "keep_apps": [],
+  "app_grace_s": 8,
+  "restore_cmds": []
+}
