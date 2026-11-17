@@ -37,6 +37,17 @@
 - `app_grace_s`：应用关闭宽限秒数。
 - `restore_cmds`：恢复时额外拉起的命令（`{"name","cmd","cwd"}` 或字符串）。
 
+## 自动守卫 gpu_guard.py（可选，无界面）
+
+每 10 秒探测一次 ComfyUI（8188）：
+- **起来** → 调 llama-swap 官方卸载 API + 写暂停旗标 `E:\AI\_scripts\gpu_pause.flag`
+  （重命名批次读到旗标后原地协作暂停，不中断不丢进度）；暂停期间若发现又有模型被加载，再卸一次。
+- **消失** → 删旗标，暂停的批次自动续跑。
+
+只做这两件事：**不杀应用、不冻结进程、不自愈复活网关**，与手动按钮互不冲突。
+无界面后台运行：`start "" pythonw gpu_guard.py`；端口 9294 单实例锁；ASCII 日志 `gpu_guard.log`。
+本机登录自启：启动文件夹 `Startup\gpu_guard.vbs`（无需管理员；删除该文件即取消自启）。
+
 ## 机器适配点
 
 `STACK_DIR` 常量指向本机栈脚本目录（`start-stack.bat` / `start-embedding-server.bat`）。
